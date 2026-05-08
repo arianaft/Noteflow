@@ -55,3 +55,27 @@ al listado. Se usa para la pantalla de detalle [id].tsx.
 Se usa para la creación de nuevo contenido. Aparece desde abajo
 cubriendo parcialmente la pantalla. Se usa en nueva-nota.tsx porque
 es una acción puntual que no forma parte del flujo principal.
+
+## Gestión de estado
+
+### useState
+Estado local de un componente. Solo sirve para datos que no necesitan
+compartirse entre pantallas, como el valor de un input.
+
+### Context API
+Permite compartir estado entre componentes sin pasar props manualmente.
+El problema es que cualquier cambio en el contexto re-renderiza todos
+los componentes que lo consumen, aunque no usen el dato que cambió.
+
+### Zustand
+Estándar moderno para estado global en React Native. No requiere
+providers anidados y solo re-renderiza los componentes que consumen
+el dato que cambió. El store se define fuera del árbol de componentes
+y se accede con un hook desde cualquier pantalla.
+
+### Type guards en NoteFlow
+El tipo AnyNote puede ser Note, ChecklistNote o IdeaNote. Para saber
+cuál es en tiempo de ejecución se usan type guards:
+- isNote(note) devuelve true solo si note tiene la propiedad content
+- isChecklistNote(note) devuelve true solo si tiene la propiedad items
+- isIdeaNote(note) devuelve true solo si tiene la propiedad tags
