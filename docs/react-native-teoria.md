@@ -38,3 +38,20 @@ Se eligió Gluestack UI sobre React Native Paper por las siguientes razones:
 El archivo constants/theme.ts centraliza todos los tokens visuales:
 colores, tipografía, espaciados y bordes. El hook useTheme() devuelve
 los valores correctos según si el sistema está en modo oscuro o claro.
+
+## Navegación en NoteFlow
+
+### Tabs (pestañas)
+Navegación principal entre las tres secciones: Notas, Tareas e Ideas.
+El usuario siempre ve las pestañas en la parte inferior y puede cambiar
+de sección en cualquier momento sin perder el estado.
+
+### Stack (pila)
+Navegación dentro de cada sección. Al pulsar una tarjeta se apila
+la pantalla de detalle encima. El botón de volver desapila y regresa
+al listado. Se usa para la pantalla de detalle [id].tsx.
+
+### Modal
+Se usa para la creación de nuevo contenido. Aparece desde abajo
+cubriendo parcialmente la pantalla. Se usa en nueva-nota.tsx porque
+es una acción puntual que no forma parte del flujo principal.
