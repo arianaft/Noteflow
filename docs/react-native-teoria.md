@@ -25,3 +25,16 @@ incluidos en Expo Go. Si necesitas módulos nativos personalizados como
 notificaciones push, biometría o cámara avanzada, necesitas un
 Development Build: un binario propio generado con EAS Build que incluye
 exactamente los módulos nativos que tu proyecto necesita.
+
+## Sistemas de diseño
+
+Se eligió Gluestack UI sobre React Native Paper por las siguientes razones:
+- Mejor soporte con Expo SDK 54
+- Filosofía utilitaria similar a Tailwind, más flexible visualmente
+- Permite crear tarjetas con estilos muy distintos para cada tipo de nota
+- React Native Paper impone Material Design, lo que limita la identidad
+  visual de NoteFlow
+
+El archivo constants/theme.ts centraliza todos los tokens visuales:
+colores, tipografía, espaciados y bordes. El hook useTheme() devuelve
+los valores correctos según si el sistema está en modo oscuro o claro.
