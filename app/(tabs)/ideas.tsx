@@ -33,7 +33,7 @@ export default function IdeasScreen() {
       )}
       <TouchableOpacity
         style={[styles.fab, { backgroundColor: theme.colors.idea }]}
-        onPress={() => router.push('/nueva-nota')}
+        onPress={() => router.push('/new-note')}
       >
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>

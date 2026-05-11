@@ -33,7 +33,7 @@ export default function ChecklistsScreen() {
       )}
       <TouchableOpacity
         style={[styles.fab, { backgroundColor: theme.colors.checklist }]}
-        onPress={() => router.push('/nueva-nota')}
+        onPress={() => router.push('/new-note')}
       >
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>

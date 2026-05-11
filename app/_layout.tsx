@@ -1,20 +1,16 @@
 import { Stack } from 'expo-router';
-import { GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from '@gluestack-ui/config';
 
 export default function RootLayout() {
   return (
-    <GluestackUIProvider config={config}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="nueva-nota"
-          options={{
-            presentation: 'modal',
-            title: 'Nueva nota',
-          }}
-        />
-      </Stack>
-    </GluestackUIProvider>
+    <Stack>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="new-note"
+        options={{
+          presentation: 'modal',
+          title: 'Nueva nota',
+        }}
+      />
+    </Stack>
   );
 }
