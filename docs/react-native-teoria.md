@@ -79,3 +79,21 @@ cuál es en tiempo de ejecución se usan type guards:
 - isNote(note) devuelve true solo si note tiene la propiedad content
 - isChecklistNote(note) devuelve true solo si tiene la propiedad items
 - isIdeaNote(note) devuelve true solo si tiene la propiedad tags
+
+## Persistencia con AsyncStorage
+
+AsyncStorage permite guardar datos en el dispositivo de forma local.
+Sus limitaciones son: no tiene cifrado, tiene límite de tamaño de 6MB
+y los datos solo están en ese dispositivo concreto.
+
+El middleware persist de Zustand serializa automáticamente el estado
+a JSON y lo guarda en AsyncStorage cada vez que cambia. Cuando la app
+se abre de nuevo, el middleware lee los datos guardados y los carga
+en el store antes de que los componentes se rendericen. Este proceso
+se llama rehidratación.
+
+Durante la rehidratación el store está vacío un instante antes de
+llenarse con los datos guardados. Para evitar que el usuario vea
+contenido vacío se puede usar el hook useStore.persist.hasHydrated()
+que devuelve false mientras se están cargando los datos, y mostrar
+un indicador de carga hasta que sea true.
