@@ -1,6 +1,4 @@
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Note, ChecklistNote, IdeaNote } from '../types';
 
 interface NotesStore {
@@ -17,54 +15,46 @@ interface NotesStore {
   deleteIdea: (id: string) => void;
 }
 
-export const useNotesStore = create<NotesStore>()(
-  persist(
-    (set) => ({
-      notes: [],
-      checklists: [],
-      ideas: [],
+export const useNotesStore = create<NotesStore>((set) => ({
+  notes: [],
+  checklists: [],
+  ideas: [],
 
-      addNote: (note) =>
-        set((state) => ({ notes: [...state.notes, note] })),
-      deleteNote: (id) =>
-        set((state) => ({ notes: state.notes.filter((n) => n.id !== id) })),
-      updateNote: (id, updates) =>
-        set((state) => ({
-          notes: state.notes.map((n) =>
-            n.id === id ? { ...n, ...updates, updatedAt: new Date() } : n
-          ),
-        })),
+  addNote: (note) =>
+    set((state) => ({ notes: [...state.notes, note] })),
+  deleteNote: (id) =>
+    set((state) => ({ notes: state.notes.filter((n) => n.id !== id) })),
+  updateNote: (id, updates) =>
+    set((state) => ({
+      notes: state.notes.map((n) =>
+        n.id === id ? { ...n, ...updates, updatedAt: new Date() } : n
+      ),
+    })),
 
-      addChecklist: (checklist) =>
-        set((state) => ({ checklists: [...state.checklists, checklist] })),
-      deleteChecklist: (id) =>
-        set((state) => ({
-          checklists: state.checklists.filter((c) => c.id !== id),
-        })),
-      toggleChecklistItem: (checklistId, itemId) =>
-        set((state) => ({
-          checklists: state.checklists.map((c) =>
-            c.id !== checklistId
-              ? c
-              : {
-                  ...c,
-                  items: c.items.map((i) =>
-                    i.id === itemId
-                      ? { ...i, isCompleted: !i.isCompleted }
-                      : i
-                  ),
-                }
-          ),
-        })),
+  addChecklist: (checklist) =>
+    set((state) => ({ checklists: [...state.checklists, checklist] })),
+  deleteChecklist: (id) =>
+    set((state) => ({
+      checklists: state.checklists.filter((c) => c.id !== id),
+    })),
+  toggleChecklistItem: (checklistId, itemId) =>
+    set((state) => ({
+      checklists: state.checklists.map((c) =>
+        c.id !== checklistId
+          ? c
+          : {
+              ...c,
+              items: c.items.map((i) =>
+                i.id === itemId
+                  ? { ...i, isCompleted: !i.isCompleted }
+                  : i
+              ),
+            }
+      ),
+    })),
 
-      addIdea: (idea) =>
-        set((state) => ({ ideas: [...state.ideas, idea] })),
-      deleteIdea: (id) =>
-        set((state) => ({ ideas: state.ideas.filter((i) => i.id !== id) })),
-    }),
-    {
-      name: 'noteflow-storage',
-      storage: createJSONStorage(() => AsyncStorage),
-    }
-  )
-);
+  addIdea: (idea) =>
+    set((state) => ({ ideas: [...state.ideas, idea] })),
+  deleteIdea: (id) =>
+    set((state) => ({ ideas: state.ideas.filter((i) => i.id !== id) })),
+}));
