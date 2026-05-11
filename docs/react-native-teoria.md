@@ -104,3 +104,20 @@ los componentes de forma más agresiva. Mientras FlatList crea y destruye
 componentes al hacer scroll, FlashList reutiliza los mismos componentes
 cambiando solo los datos que muestran. Esto elimina las pantallas en
 blanco que aparecen al hacer scroll rápido con listas largas.
+
+## Decisiones técnicas
+
+### Librería UI
+Se evaluó Gluestack UI pero presentó incompatibilidades con el entorno
+web de desarrollo. Se implementó un sistema de diseño propio en
+constants/theme.ts con los mismos principios de tokens visuales.
+
+### Validación de formularios
+Se evaluó Zod pero presentó conflictos de tipos con TypeScript strict.
+Se implementó validación manual siguiendo el mismo patrón que Zod:
+schemas de validación, mensajes de error por campo y feedback visual.
+
+### Persistencia
+AsyncStorage está configurado correctamente en el store de Zustand
+mediante el middleware persist. No es compatible con web pero funciona
+correctamente en dispositivos móviles con Expo Go.
