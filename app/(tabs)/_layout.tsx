@@ -3,7 +3,20 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function TabsLayout() {
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: '#1F2937',
+          borderTopColor: '#374151',
+        },
+        tabBarActiveTintColor: '#6366F1',
+        tabBarInactiveTintColor: '#6B7280',
+        headerStyle: {
+          backgroundColor: '#1F2937',
+        },
+        headerTintColor: '#F9FAFB',
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
@@ -30,6 +43,18 @@ export default function TabsLayout() {
             <Ionicons name="bulb-outline" size={size} color={color} />
           ),
         }}
+      />
+      <Tabs.Screen
+        name="notas/[id]"
+        options={{ href: null }}
+      />
+      <Tabs.Screen
+        name="checklists/[id]"
+        options={{ href: null }}
+      />
+      <Tabs.Screen
+        name="ideas/[id]"
+        options={{ href: null }}
       />
     </Tabs>
   );
