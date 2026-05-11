@@ -97,3 +97,10 @@ llenarse con los datos guardados. Para evitar que el usuario vea
 contenido vacío se puede usar el hook useStore.persist.hasHydrated()
 que devuelve false mientras se están cargando los datos, y mostrar
 un indicador de carga hasta que sea true.
+## Rendimiento en listas
+
+FlashList de Shopify mejora el rendimiento respecto a FlatList reciclando
+los componentes de forma más agresiva. Mientras FlatList crea y destruye
+componentes al hacer scroll, FlashList reutiliza los mismos componentes
+cambiando solo los datos que muestran. Esto elimina las pantallas en
+blanco que aparecen al hacer scroll rápido con listas largas.
